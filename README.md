@@ -1,7 +1,7 @@
 # roadmap-generator
-This is a Roadmap Generator application that utilizes Gemini, a large language model from Google AI, to dynamically generate roadmaps based on a user-provided topic.
-=======
-Welcome to the NextJS 13 base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
+
+This Roadmap Generator application utilizes Gemini, a large language model from Google AI, to dynamically generate roadmaps based on a user-provided topic.
+
 
 ## Getting Started
 
