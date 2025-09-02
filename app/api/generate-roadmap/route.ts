@@ -21,29 +21,47 @@ interface RoadmapItem {
 async function generateRoadmapWithGemini(
   topic: string,
 ): Promise<RoadmapItem[]> {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-  const prompt = `You are only authorized to generate roadmap with below format. Generate a detailed learning roadmap for ${topic}. The roadmap should be structured as a JSON array of objects, where each object represents a main topic and has the following structure: {
-    "id": "unique string id",
-    "type": "main",
-    "label": "name of the main topic",
-    "children": [
-      {
-        "id": "unique string id",
-        "type": "sub" or "skill",
-        "label": "name of the subtopic or skill",
-        "children": [] (optional, for further nesting)
-      }
-    ]
-  }
-  Include 5-8 main topics, each with relevant subtopics and skills. . also arrange nodes and children into searate hierarchy.
-  Ensure the structure is valid JSON`;
+  const prompt = `Generate a structured learning roadmap for ${topic} following the style of Roadmap.sh. The roadmap should be structured as a JSON array of objects, where each object represents a major learning path and follows this structure:
+
+{
+  "id": "unique_string_id",
+  "type": "main",
+  "label": "Major Topic/Concept",
+  "children": [
+    {
+      "id": "unique_string_id",
+      "type": "sub",
+      "label": "Subtopic or Category",
+      "children": [
+        {
+          "id": "unique_string_id",
+          "type": "skill",
+          "label": "Specific Skill or Technology"
+        }
+      ]
+    }
+  ]
+}
+
+Requirements:
+1. Include 4-6 major learning paths
+2. Each major path should have 3-5 relevant subtopics
+3. Each subtopic should have 2-4 specific skills or technologies
+4. Use clear, concise labels
+5. Order topics from fundamental/prerequisite knowledge to advanced concepts
+6. Include both theoretical concepts and practical skills
+7. Ensure progressive difficulty levels
+8. Make relationships between topics clear and logical
+
+The response must be valid JSON that can be parsed. Do not include any explanatory text, only the JSON array.`;
 
   const result = await model.generateContent(prompt);
   try {
     // Make the API call to generate content
     const apiResponse = await model.generateContent(prompt);
-    console.log(apiResponse);
+    console.log(apiResponse.response);
 
     // Ensure apiResponse and the required fields are defined
     if (
@@ -77,6 +95,7 @@ export async function POST(req: Request) {
   try {
     const { topic } = await req.json();
     const roadmap = await generateRoadmapWithGemini(topic);
+    
     return NextResponse.json({ roadmap });
   } catch (error) {
     console.error("Error generating roadmap:", error);
