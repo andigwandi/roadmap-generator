@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# roadmap-generator
+This is a Roadmap Generator application that utilizes Gemini, a large language model from Google AI, to dynamically generate roadmaps based on a user-provided topic.
+=======
 Welcome to the NextJS 13 base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
 
 ## Getting Started
@@ -22,3 +26,4 @@ To learn more about Next.js, take a look at the following resources:
 To make your next App run smoothly in production make sure to deploy your project with [Repl Deployments](https://docs.replit.com/hosting/deployments/about-deployments)!
 
 You can also produce a production build by running `npm run build` and [changing the run command](https://docs.replit.com/programming-ide/configuring-repl#run) to `npm run start`.
+>>>>>>> 7233d3749b9ca7ebe2ff04003b4f24d66177afe1

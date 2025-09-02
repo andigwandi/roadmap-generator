@@ -12,6 +12,7 @@
     "@google/generative-ai": "^0.17.1",
     "@reactflow/minimap": "^11.7.14",
     "@xyflow/react": "^12.3.0",
+    "convex": "^1.26.2",
     "next": "^14.2.7",
     "openai": "^4.57.1",
     "react": "^18",
